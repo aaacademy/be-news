@@ -18,3 +18,7 @@ npx sequelize-cli model:generate --name User --attributes firstName:string,lastN
 ```
 npx sequelize-cli model:generate --name Post --attributes title:string,description:string,images:string
 ```
+
+```
+npx sequelize-cli migration:create --name modify_posts_add_new_fields
+```

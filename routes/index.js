@@ -7,11 +7,11 @@ const upload = multer({ dest: 'uploads/' })
 
 const route = require('express').Router()
 
-route.get('/users', checkToken, getUsers)
+route.get('/users', getUsers)
 route.post('/users', createUser)
 route.delete('/users/:id', checkToken, removeUser)
 route.post('/login', loginUser)
 
-route.post('/posts', upload.single("images"), createPost)
+route.post('/posts', checkToken, createPost)
 
 module.exports = route
