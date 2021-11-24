@@ -1,24 +1,29 @@
 # News API
 
 - [x] Express JS
-- [ ] Mysql
-- [ ] Seguelize
-- [ ] Jsonwebtoken
-- [ ] bcrypt
+- [x] Mysql
+- [x] Sequelize
+- [x] Jsonwebtoken
+- [x] bcrypt
 - [ ] middlepapah
 
 ## Sequelize
 
-```
+### Membuat model migration
+
+#### Model User
+```bash
 npx sequelize-cli model:generate --name User --attributes firstName:string,lastName:string,email:string,password:string
 ```
 
-```
+#### Model Post
+```bash
 npx sequelize-cli model:generate --name Post --attributes title:string,description:string,images:string
 ```
 
-```
-npx sequelize-cli migration:create --name modify_posts_add_new_fields
+#### Add Field Author
+```bash
+npx sequelize-cli migration:create --name modify_posts_add_field_author
 ```
 
 
