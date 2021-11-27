@@ -24,20 +24,54 @@ const createPost = async (req, res) => {
         message: "server error",
       });
   }
-
-  // const file = req.file.path
-  // res.status(201).json({
-  //     data: file,
-  //     message: "success",
-  //   });
-
-//   res.json(req.user);
 };
 
-const removePost = async () => {}
+const removePost = async (req, res) => {
+  try {
+      const id = req.params.id
+      const deletePost = await Model.Post.destroy({
+          where: {
+              id: id,
+              author : req.user.id
+          }
+      })
+      if (deletePost < 1) {
+          rest.status(404).json({
+              data: null,
+              message: "failed to erase"
+          })
+      }
+      res.status(200).json({
+          data: deletePost,
+          message: "sucess",
+      })
+  } catch (error) {
+      res.status(500).json({
+          data: null,
+          message: "server error",
+      })
+  }
 
-const getPosts = async () => {}
+}
+
+const getPosts = async (req, res) => {
+  try {
+      const postData = await Model.Post.findAll()
+      res.status(200).json({
+          data: postData,
+          message: "sucess",
+      })
+  } catch (error) {
+      res.status(500).json({
+          data: null,
+          message: "server error" + error,
+      })
+  }
+
+}
 
 module.exports = {
   createPost,
+  removePost,
+  getPosts,
 };
